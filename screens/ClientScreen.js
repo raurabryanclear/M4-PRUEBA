@@ -50,7 +50,7 @@ export const ClientList = ({ navigation }) => {
           <Icon
             name="shopping-cart"
             type='Feather'
-            size={20}
+            size={21}
             color='white'
           />
         </View>
