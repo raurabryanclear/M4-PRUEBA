@@ -7,6 +7,7 @@ import {
   View,
   TouchableOpacity
 } from "react-native";
+import { FAB } from "@rneui/themed";
 
 import { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/Feather";
@@ -33,7 +34,7 @@ export const SalesList = ({ navigation }) => {
   const ItemListSales = ({ item }) => {
     return (<View style={{ flexDirection: 'row', flex: 1, borderWidth: 1, paddingVertical: 10, margin: 5, borderRadius: 4, backgroundColor: '#33415C' }}>
       <TouchableHighlight style={{ flex: 8 }} onPress={() => {
-        navigation.navigate("CreateClient")
+        navigation.navigate("ClientForm")
       }}>
         <View style={{ flexDirection: 'row' }}>
           <View style={{ flex: 1 }}  >
@@ -56,7 +57,7 @@ export const SalesList = ({ navigation }) => {
           />
         </View>
       </TouchableHighlight>
-     
+      
     
     </View>
  
@@ -81,7 +82,12 @@ export const SalesList = ({ navigation }) => {
 
       />
     </View>
-    <View></View>
+    <FAB
+      color="#002855"
+      title={'NUEVO'}
+      onPress={() => navigation.navigate('ClientForm')}
+      style={{ justifyContent: 'flex-end', paddingHorizontal: 12, paddingTop: 550}}
+    />
   </View>)
 
 }
