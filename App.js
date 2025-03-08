@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ClientScreen from './screens/ClientScreen';
+import HomeScreen from './screens/HomeScreen';
+import SalesScreen from './screens/SalesScreen';
 
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator()
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello world!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <StackScreen />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const StackScreen = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen
+        name="Tabs"
+        component={TabsScreen}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  )
+}
+const TabsScreen = () => {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Sales" component={SalesScreen} />
+      <Tab.Screen name="Client" component={ClientScreen} />
+    </Tab.Navigator>
+  )
+}
