@@ -1,6 +1,6 @@
 export const getCliente = async () => {
   try {
-    const response = await fetch('http://192.168.68.117:3007/client')
+    const response = await fetch('http://192.168.68.117:3011/client')
     if (!response.ok) {
       console.log(response.status);
     }
@@ -12,7 +12,8 @@ export const getCliente = async () => {
 
 export const createClient = async (data) => {
   try {
-    const response = await fetch('http://192.168.68.117:3007/createclient', {
+    console.log('CREANDO...')
+    const response = await fetch('http://192.168.68.117:3011/createclient', {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -22,8 +23,16 @@ export const createClient = async (data) => {
     if (!response.ok) {
       console.log(response.status);
     }
-    return response.json();
+    const dataCreate = await response.json()
+    return {
+      data: dataCreate,
+      status: response.status
+    };
   } catch (error) {
     console.log(error)
+    return {
+      data: null,
+      status: response.status
+    };
   }
 }

@@ -16,45 +16,91 @@ export default function FormClientScreen({ navigation }) {
     apellido: '',
     telefono: '',
     direccion: '',
-    email: ''
+    email: '',
+    isValid: false
   })
-  const handleCreateClient = async () => {
+  const validation = () => {
     if (!nombre) {
       setErrores((prev) => {
-        return {...prev, nombre: 'El nombre es requrido'}
+        return { ...prev, nombre: 'El nombre es requrido' }
       })
-      return;
     } else {
       setErrores((prev) => {
-        return {...prev, nombre: ''}
+        return { ...prev, nombre: '' }
       })
     }
     if (!apellido) {
       setErrores((prev) => {
-        return { ...prev, apellido: 'El apellido es requrido'}
+        return { ...prev, apellido: 'El apellido es requrido' }
       })
-      return;
     } else {
       setErrores((prev) => {
-        return { ...prev, apellido: ''}
+        return { ...prev, apellido: '' }
       })
+
     }
-    if (!apellido) {
+    if (!cedula) {
       setErrores((prev) => {
-        return { ...prev, apellido: 'El apellido es requrido'}
+        return { ...prev, cedula: 'El cedula es requrido' }
       })
-      return;
+    } else if (cedula.length !== 10) {
+      setErrores((prev) => {
+        return { ...prev, cedula: 'La cedula debe de ser de 10 digitos' }
+      })
+    } else if (isNaN(parseInt(cedula))) {
+      setErrores((prev) => {
+        return { ...prev, cedula: 'La cedula debe de ser numerico' }
+      })
     } else {
       setErrores((prev) => {
-        return { ...prev, apellido: ''}
+        return { ...prev, cedula: '' }
       })
     }
-    console.log(cedula)
-    console.log(nombre)
-    console.log(apellido)
-    console.log(telefono)
-    console.log(direccion)
-    console.log(email)
+    if (!telefono) {
+      setErrores((prev) => {
+        return { ...prev, telefono: 'El telefono es requrido' }
+      })
+    } else if (telefono.length !== 10) {
+      setErrores((prev) => {
+        return { ...prev, cedula: 'La telefono debe de ser de 10 digitos' }
+      })
+    }
+    else {
+      setErrores((prev) => {
+        return { ...prev, telefono: '' }
+      })
+    }
+    if (!direccion) {
+      setErrores((prev) => {
+        return { ...prev, direccion: 'El direccion es requrido' }
+      })
+    } else {
+      setErrores((prev) => {
+        return { ...prev, direccion: '' }
+      })
+    }
+    if (!email) {
+      setErrores((prev) => {
+        return { ...prev, email: 'El email es requrido' }
+      })
+    } else {
+      setErrores((prev) => {
+        return { ...prev, email: '' }
+      })
+    }
+    if (nombre && apellido && cedula && telefono && direccion && email && cedula.length === 10 && telefono.length === 10) {
+      setErrores((prev) => {
+        return { ...prev, isValid: true }
+      })
+    } else {
+      setErrores((prev) => {
+        return { ...prev, isValid: false }
+      })
+    }
+  }
+  const handleCreateClient = async () => {
+    validation()
+    if (!errores.isValid) return
     const data = {
       id_cliente: cedula,
       nombre_cl: nombre,
@@ -63,8 +109,8 @@ export default function FormClientScreen({ navigation }) {
       direccion: direccion,
       email: email
     }
-    const response = await createClient(data)
-    console.log(response)
+    const { status } = await createClient(data)
+    console.log(status)
   }
   return (
     <View style={styles.container}>
@@ -85,28 +131,28 @@ export default function FormClientScreen({ navigation }) {
       <Text>Apellido</Text>
       <Input
         onChangeText={(text) => setApellido(text)}
-        placeholder='Juan'
+        placeholder='Perez'
         errorStyle={{ color: 'red' }}
         errorMessage={errores.apellido}
       />
       <Text>Telefono</Text>
       <Input
         onChangeText={(text) => setTelefono(text)}
-        placeholder='Juan'
+        placeholder='0980521452'
         errorStyle={{ color: 'red' }}
         errorMessage={errores.telefono}
       />
       <Text>Direccion</Text>
       <Input
         onChangeText={(text) => setDireccion(text)}
-        placeholder='Juan'
+        placeholder='Av Buena vida'
         errorStyle={{ color: 'red' }}
         errorMessage={errores.direccion}
       />
       <Text>Email</Text>
       <Input
         onChangeText={(text) => setEmail(text)}
-        placeholder='Juan'
+        placeholder='example@gmail.com'
         errorStyle={{ color: 'red' }}
         errorMessage={errores.email}
       />
