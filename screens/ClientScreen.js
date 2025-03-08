@@ -7,6 +7,7 @@ import {
   View
 } from "react-native";
 
+import { FAB } from "@rneui/themed";
 import { useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/Feather";
 import { getCliente } from "../services/clientServices";
@@ -55,14 +56,15 @@ export const ClientList = ({ navigation }) => {
           />
         </View>
       </TouchableHighlight>
-
     </View>)
   }
 
-  return (<View>
+  return (<View >
 
-    <View>
+    <View style={{ flex: 1, minHeight: '90%' }}>
       <FlatList
+        refreshing
+        onRefresh={() => getAllCliente()}
         data={dataClienteList}
         renderItem={({ item }) => {
           return (<ItemListCliente
@@ -70,11 +72,14 @@ export const ClientList = ({ navigation }) => {
           />)
         }}
         keyExtractor={(item) => (item.id_cliente)}
-
-
       />
     </View>
-    <View></View>
+    <FAB
+      color="#002855"
+      title={'NUEVO'}
+      onPress={() => navigation.navigate('CreateClient')}
+      style={{ justifyContent: 'flex-end', paddingHorizontal: 12 }}
+    />
   </View>)
 
 }
