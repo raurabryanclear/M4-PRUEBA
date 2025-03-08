@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ClientScreen from './screens/ClientScreen';
+import { ClientList } from './screens/ClientScreen';
 import FormClientScreen from './screens/FormClientScreen';
 import HomeScreen from './screens/HomeScreen';
 import SalesScreen from './screens/SalesScreen';
@@ -34,7 +34,7 @@ const TabsScreen = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Sales" component={SalesScreen} />
-      <Tab.Screen name="Client" component={ClientScreen} />
+      <Tab.Screen name="Client" component={ClientList} />
     </Tab.Navigator>
   )
 }
