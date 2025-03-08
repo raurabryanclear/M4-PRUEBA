@@ -17,7 +17,7 @@ export default function App() {
 }
 const StackScreen = () => {
   return (
-    <Stack.Navigator initialRouteName='CreateClient'>
+    <Stack.Navigator initialRouteName='Home'>
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='CreateClient' component={FormClientScreen} options={{
         headerTitle: 'Clientes'
