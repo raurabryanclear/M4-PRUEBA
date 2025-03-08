@@ -11,7 +11,7 @@ export default function FormClientScreen({ navigation }) {
   const [direccion, setDireccion] = useState('')
   const [email, setEmail] = useState('')
   const [errores, setErrores] = useState({
-    nombre: 'Es requerido',
+    nombre: '',
     cedula: '',
     apellido: '',
     telefono: '',
@@ -19,6 +19,36 @@ export default function FormClientScreen({ navigation }) {
     email: ''
   })
   const handleCreateClient = async () => {
+    if (!nombre) {
+      setErrores((prev) => {
+        return {...prev, nombre: 'El nombre es requrido'}
+      })
+      return;
+    } else {
+      setErrores((prev) => {
+        return {...prev, nombre: ''}
+      })
+    }
+    if (!apellido) {
+      setErrores((prev) => {
+        return { ...prev, apellido: 'El apellido es requrido'}
+      })
+      return;
+    } else {
+      setErrores((prev) => {
+        return { ...prev, apellido: ''}
+      })
+    }
+    if (!apellido) {
+      setErrores((prev) => {
+        return { ...prev, apellido: 'El apellido es requrido'}
+      })
+      return;
+    } else {
+      setErrores((prev) => {
+        return { ...prev, apellido: ''}
+      })
+    }
     console.log(cedula)
     console.log(nombre)
     console.log(apellido)
@@ -40,30 +70,45 @@ export default function FormClientScreen({ navigation }) {
     <View style={styles.container}>
       <Text>Cedula</Text>
       <Input
-        placeholder='1729097228'
         onChangeText={(text) => setCedula(text)}
+        placeholder='1729097228'
         errorStyle={{ color: 'red' }}
-        errorMessage={errores.nombre}
+        errorMessage={errores.cedula}
       />
       <Text>Nombre</Text>
       <Input
         onChangeText={(text) => setNombre(text)}
+        placeholder='Juan'
+        errorStyle={{ color: 'red' }}
+        errorMessage={errores.nombre}
       />
       <Text>Apellido</Text>
       <Input
         onChangeText={(text) => setApellido(text)}
+        placeholder='Juan'
+        errorStyle={{ color: 'red' }}
+        errorMessage={errores.apellido}
       />
       <Text>Telefono</Text>
       <Input
         onChangeText={(text) => setTelefono(text)}
+        placeholder='Juan'
+        errorStyle={{ color: 'red' }}
+        errorMessage={errores.telefono}
       />
       <Text>Direccion</Text>
       <Input
         onChangeText={(text) => setDireccion(text)}
+        placeholder='Juan'
+        errorStyle={{ color: 'red' }}
+        errorMessage={errores.direccion}
       />
       <Text>Email</Text>
       <Input
         onChangeText={(text) => setEmail(text)}
+        placeholder='Juan'
+        errorStyle={{ color: 'red' }}
+        errorMessage={errores.email}
       />
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
         <TouchableOpacity

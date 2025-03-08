@@ -63,8 +63,6 @@ export const ClientList = ({ navigation }) => {
 
     <View style={{ flex: 1, minHeight: '90%' }}>
       <FlatList
-        refreshing
-        onRefresh={() => getAllCliente()}
         data={dataClienteList}
         renderItem={({ item }) => {
           return (<ItemListCliente
