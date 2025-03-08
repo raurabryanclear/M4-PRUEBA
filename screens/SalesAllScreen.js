@@ -84,7 +84,7 @@ export const SalesList = ({ navigation }) => {
     </View>
     <FAB
       color="#002855"
-      title={'NUEVO'}
+      title={'NUEVOOOO'}
       onPress={() => navigation.navigate('ClientForm')}
       style={{ justifyContent: 'flex-end', paddingHorizontal: 12, paddingTop: 550}}
     />
